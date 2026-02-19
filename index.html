@@ -33,7 +33,49 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- styles moved to css/styles.css -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=2">
+    <style>
+        /* CRITICAL INLINE STYLES FOR 3D BALLS */
+        .lotto-ball-3d {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow:
+                inset -5px -5px 10px rgba(0, 0, 0, 0.4),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.4),
+                5px 5px 10px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            border: none !important;
+        }
+
+        .ball-range-1 {
+            background: radial-gradient(circle at 35% 35%, #ffd700, #e6ac00);
+            color: #333;
+            text-shadow: none;
+        }
+
+        .ball-range-2 {
+            background: radial-gradient(circle at 35% 35%, #3b82f6, #1e3a8a);
+        }
+
+        .ball-range-3 {
+            background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b);
+        }
+
+        .ball-range-4 {
+            background: radial-gradient(circle at 35% 35%, #6b7280, #374151);
+        }
+
+        .ball-range-5 {
+            background: radial-gradient(circle at 35% 35%, #22c55e, #14532d);
+        }
+    </style>
 </head>
 
 <body class="antialiased">

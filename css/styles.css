@@ -29,6 +29,54 @@ html {
     /* 카드 배경 */
 }
 
+/* 3D Billiard Ball Styles - Moved to top for priority */
+.lotto-ball-3d {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow:
+        inset -5px -5px 10px rgba(0, 0, 0, 0.4),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.4),
+        5px 5px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+/* Color Ranges */
+.ball-range-1 {
+    /* 1-10: Yellow/Gold */
+    background: radial-gradient(circle at 35% 35%, #ffd700, #e6ac00);
+    color: #333;
+    /* Dark text for contrast */
+    text-shadow: none;
+}
+
+.ball-range-2 {
+    /* 11-20: Blue */
+    background: radial-gradient(circle at 35% 35%, #3b82f6, #1e3a8a);
+}
+
+.ball-range-3 {
+    /* 21-30: Red */
+    background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b);
+}
+
+.ball-range-4 {
+    /* 31-40: Grey/Black */
+    background: radial-gradient(circle at 35% 35%, #6b7280, #374151);
+}
+
+.ball-range-5 {
+    /* 41-45: Green */
+    background: radial-gradient(circle at 35% 35%, #22c55e, #14532d);
+}
+
 body {
     background-color: var(--gray-background);
     color: var(--text-dark);
@@ -562,3 +610,5 @@ body {
 .info-box-luxury ul li span:last-child {
     color: var(--gold-accent);
 }
+
+/* End of file */
