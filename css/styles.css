@@ -1,453 +1,564 @@
 /* Inter 폰트 적용 */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        html {
-            font-family: 'Inter', sans-serif;
-        }
-        /* 고급스러운 파란색 팔레트 및 악센트 */
-        :root {
-            --primary-dark-blue: #021B3A;
-            /* 매우 진한 파랑 (배경, 푸터) */
-            --primary-blue: #0A2C59;
-            /* 진한 파랑 (주요 요소) */
-            --secondary-blue: #1A4E8C;
-            /* 중간 파랑 (버튼, 호버) */
-            --accent-blue: #3A7DCA;
-            /* 밝은 파랑 (강조) */
-            --light-blue: #E0F2F7;
-            /* 아주 밝은 파랑 (보조 배경) */
-            --gold-accent: #FFD700;
-            /* 골드 악센트 */
-            --text-dark: #1F2937;
-            /* 어두운 텍스트 */
-            --text-light: #F9FAFB;
-            /* 밝은 텍스트 */
-            --gray-background: #F3F4F6;
-            /* 회색 배경 */
-            --card-background: #FFFFFF;
-            /* 카드 배경 */
-        }
-        body {
-            background-color: var(--gray-background);
-            color: var(--text-dark);
-        }
-        .header-bg {
-            background-color: var(--primary-dark-blue);
-        }
-        .footer-bg {
-            background-color: var(--primary-dark-blue);
-        }
-        .footer-bg p,
-        .footer-bg a {
-            color: var(--gold-accent);
-            /* 노란색으로 변경 */
-        }
-        .footer-bg a:hover {
-            color: var(--text-light);
-            /* 마우스 오버 시 흰색으로 변경 */
-        }
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: var(--text-light);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: var(--secondary-blue);
-            transform: translateY(-2px);
-        }
-        .btn-secondary {
-            background-color: var(--card-background);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background-color: var(--light-blue);
-            transform: translateY(-2px);
-        }
-        .card-bg {
-            background-color: var(--card-background);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .text-primary-blue {
-            color: var(--primary-blue);
-        }
-        .text-accent-blue {
-            color: var(--accent-blue);
-        }
-        .text-gold-accent {
-            color: var(--gold-accent);
-        }
-        .border-primary-blue {
-            border-color: var(--primary-blue);
-        }
-        .bg-gradient-hero {
-            background: linear-gradient(to bottom right, var(--primary-blue), var(--primary-dark-blue));
-        }
-        .bg-gradient-section {
-            background: linear-gradient(to top left, var(--light-blue), var(--gray-background));
-        }
-        /* 추가적인 세련된 스타일 */
-        .rounded-xl {
-            border-radius: 1rem;
-        }
-        .shadow-lg-custom {
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2), 0 6px 15px -5px rgba(0, 0, 0, 0.1);
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-        .animate-fade-in {
-            animation: fadeIn 1.5s ease-out forwards;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        .game-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2), 0 6px 15px -5px rgba(0, 0, 0, 0.1);
-        }
-        /* 로또 번호 선택 창 CSS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 90%;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .number-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-            max-width: 32rem;
-        }
-        .number-ball {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #ffffff, #f0f9ff);
-            border: 2px solid var(--accent-blue);
-            color: var(--primary-blue);
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-        }
-        .number-ball:hover {
-            background-color: var(--accent-blue);
-            color: var(--text-light);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(58, 125, 202, 0.3);
-        }
-        .number-ball.selected {
-            background: linear-gradient(145deg, var(--accent-blue), #2b5c9b);
-            color: var(--text-light);
-            border-color: var(--primary-dark-blue);
-            box-shadow: 0 0 15px rgba(58, 125, 202, 0.5);
-            transform: scale(1.1);
-        }
-        .game-display-box {
-            background-color: var(--gray-background);
-            border-radius: 1rem;
-            padding: 1rem;
-        }
-        .game-line {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--gray-background);
-        }
-        .game-line-selected-numbers {
-            display: flex;
-            gap: 0.25rem;
-        }
-        .game-line-number-ball {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background-color: var(--accent-blue);
-            color: var(--text-light);
-            font-size: 0.875rem;
-            font-weight: bold;
-        }
-        .game-purchase-modal-content {
-            display: flex;
-            flex-direction: row;
-            background-color: #fefefe;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.5s ease;
-            max-width: 90%;
-            min-height: 70vh;
-            overflow: hidden;
-        }
-        .game-purchase-modal-sidebar {
-            width: 250px;
-            background-color: var(--primary-dark-blue);
-            padding: 1rem;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: relative;
-        }
-        .game-purchase-modal-sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .game-purchase-modal-sidebar-item:hover,
-        .game-purchase-modal-sidebar-item.active {
-            background-color: var(--secondary-blue);
-        }
-        .game-purchase-modal-main {
-            flex-grow: 1;
-            padding: 2rem;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-            position: relative;
-        }
-        .game-purchase-modal-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-        }
-        /* Triple Luck 전용 스타일 */
-        .triple-luck-modal-header {
-            background-image: url('https://placehold.co/1000x200/5C0000/FFFFFF?text=TRIPLE+LUCK');
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .triple-luck-game-card {
-            background: linear-gradient(to bottom, #d4af37, #b8860b);
-            color: #5C0000;
-            border: 2px solid #a37f00;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .triple-luck-game-card:hover {
-            transform: scale(1.05);
-        }
-        .tab-button-active {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-        }
-        .treasure-hunter-card {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(145deg, #a37f00, #d4af37);
-            color: white;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            border: 2px solid #ffeb3b;
-        }
-        .treasure-hunter-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
-        }
-        .treasure-hunter-card.revealed {
-            background: #fff;
-            color: var(--primary-blue);
-            pointer-events: none;
-            transform: none;
-        }
-        .treasure-hunter-card.revealed.prize {
-            background: #4caf50;
-            color: white;
-        }
-        .catch-me-window {
-            width: 100px;
-            height: 100px;
-            background: #8B4513; /* Brown for the window frame */
-            border: 5px solid #654321;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-        .catch-me-window-pane {
-            width: 100%;
-            height: 100%;
-            background-color: #A9A9A9; /* Gray for the glass */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .catch-me-symbol {
-            font-size: 2rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-            transform: scale(0);
-        }
-        .catch-me-window.revealed .catch-me-symbol {
-            transform: scale(1);
-        }
-        .tab-button-active {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-        }
-        /* Custom styles for enhanced modals */
-        .modal-background-dark {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-        }
-        .modal-header-luxury {
-            background: linear-gradient(145deg, #1f2937, #374151);
-            color: var(--gold-accent);
-            border-bottom: 2px solid var(--gold-accent);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        .modal-card-luxury {
-            background: linear-gradient(145deg, #1f2937, #2d3748);
-            border: 1px solid #4a5568;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            color: white;
-        }
-        .modal-card-luxury:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0,0,0,0.4);
-        }
-        .modal-button-luxury {
-            background: linear-gradient(145deg, #d4af37, #b8860b);
-            color: #1f2937;
-            font-weight: bold;
-            text-shadow: 0 1px 1px rgba(255,255,255,0.3);
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .modal-button-luxury:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-        }
-        .tab-button-luxury {
-            background: #2d3748;
-            color: white;
-            border: 1px solid #4a5568;
-            transition: all 0.2s ease;
-        }
-        .tab-button-luxury.active {
-            background: var(--gold-accent);
-            color: #1f2937;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
-        .number-ball-luxury {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(145deg, #374151, #1f2937);
-            border: 1px solid #4a5568;
-            color: #e2e8f0;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .number-ball-luxury:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #4a5568, #374151);
-        }
-        .number-ball-luxury.selected {
-            background: linear-gradient(145deg, #ffd700, #b8860b);
-            color: #1f2937;
-            box-shadow: 0 0 10px rgba(255,215,0,0.8);
-            transform: scale(1.15);
-        }
-        .game-purchase-modal-main {
-            background: #1f2937;
-            padding: 2rem;
-            color: white;
-        }
-        .game-purchase-modal-sidebar {
-            background: #0d121c;
-        }
-        .sidebar-item-luxury {
-            background-color: #1f2937;
-            border-radius: 0.5rem;
-        }
-        .sidebar-item-luxury.active {
-            background-color: #2d3748;
-        }
-        .game-card-luxury img {
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .info-box-luxury {
-            background: #2d3748;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            border: 1px solid #4a5568;
-        }
-        .info-box-luxury h4 {
-            color: var(--gold-accent);
-            border-bottom: 1px solid #4a5568;
-            padding-bottom: 0.5rem;
-        }
-        .info-box-luxury ul li span:last-child {
-            color: var(--gold-accent);
-        }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+/* 고급스러운 파란색 팔레트 및 악센트 */
+:root {
+    --primary-dark-blue: #021B3A;
+    /* 매우 진한 파랑 (배경, 푸터) */
+    --primary-blue: #0A2C59;
+    /* 진한 파랑 (주요 요소) */
+    --secondary-blue: #1A4E8C;
+    /* 중간 파랑 (버튼, 호버) */
+    --accent-blue: #3A7DCA;
+    /* 밝은 파랑 (강조) */
+    --light-blue: #E0F2F7;
+    /* 아주 밝은 파랑 (보조 배경) */
+    --gold-accent: #FFD700;
+    /* 골드 악센트 */
+    --text-dark: #1F2937;
+    /* 어두운 텍스트 */
+    --text-light: #F9FAFB;
+    /* 밝은 텍스트 */
+    --gray-background: #F3F4F6;
+    /* 회색 배경 */
+    --card-background: #FFFFFF;
+    /* 카드 배경 */
+}
+
+body {
+    background-color: var(--gray-background);
+    color: var(--text-dark);
+}
+
+.header-bg {
+    background-color: var(--primary-dark-blue);
+}
+
+.footer-bg {
+    background-color: var(--primary-dark-blue);
+}
+
+.footer-bg p,
+.footer-bg a {
+    color: var(--gold-accent);
+    /* 노란색으로 변경 */
+}
+
+.footer-bg a:hover {
+    color: var(--text-light);
+    /* 마우스 오버 시 흰색으로 변경 */
+}
+
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--card-background);
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-blue);
+    transform: translateY(-2px);
+}
+
+.card-bg {
+    background-color: var(--card-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.text-primary-blue {
+    color: var(--primary-blue);
+}
+
+.text-accent-blue {
+    color: var(--accent-blue);
+}
+
+.text-gold-accent {
+    color: var(--gold-accent);
+}
+
+.border-primary-blue {
+    border-color: var(--primary-blue);
+}
+
+.bg-gradient-hero {
+    background: linear-gradient(to bottom right, var(--primary-blue), var(--primary-dark-blue));
+}
+
+.bg-gradient-section {
+    background: linear-gradient(to top left, var(--light-blue), var(--gray-background));
+}
+
+/* 추가적인 세련된 스타일 */
+.rounded-xl {
+    border-radius: 1rem;
+}
+
+.shadow-lg-custom {
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2), 0 6px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* Utility Classes for Background Colors */
+.bg-primary-dark-blue {
+    background-color: var(--primary-dark-blue);
+}
+
+.bg-primary-blue {
+    background-color: var(--primary-blue);
+}
+
+.bg-secondary-blue {
+    background-color: var(--secondary-blue);
+}
+
+.bg-accent-blue {
+    background-color: var(--accent-blue);
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+.bg-gold-accent {
+    background-color: var(--gold-accent);
+}
+
+.bg-gray-background {
+    background-color: var(--gray-background);
+}
+
+.bg-card-background {
+    background-color: var(--card-background);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.game-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2), 0 6px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 로또 번호 선택 창 CSS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 90%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.number-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    max-width: 32rem;
+}
+
+.number-ball {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffffff, #f0f9ff);
+    border: 2px solid var(--accent-blue);
+    color: var(--primary-blue);
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.number-ball:hover {
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(58, 125, 202, 0.3);
+}
+
+.number-ball.selected {
+    background: linear-gradient(145deg, var(--accent-blue), #2b5c9b);
+    color: var(--text-light);
+    border-color: var(--primary-dark-blue);
+    box-shadow: 0 0 15px rgba(58, 125, 202, 0.5);
+    transform: scale(1.1);
+}
+
+.game-display-box {
+    background-color: var(--gray-background);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.game-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--gray-background);
+}
+
+.game-line-selected-numbers {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.game-line-number-ball {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.game-purchase-modal-content {
+    display: flex;
+    flex-direction: row;
+    background-color: #fefefe;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease;
+    max-width: 90%;
+    min-height: 70vh;
+    overflow: hidden;
+}
+
+.game-purchase-modal-sidebar {
+    width: 250px;
+    background-color: var(--primary-dark-blue);
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.game-purchase-modal-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.game-purchase-modal-sidebar-item:hover,
+.game-purchase-modal-sidebar-item.active {
+    background-color: var(--secondary-blue);
+}
+
+.game-purchase-modal-main {
+    flex-grow: 1;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    position: relative;
+}
+
+.game-purchase-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+}
+
+/* Triple Luck 전용 스타일 */
+.triple-luck-modal-header {
+    background-image: url('https://placehold.co/1000x200/5C0000/FFFFFF?text=TRIPLE+LUCK');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.triple-luck-game-card {
+    background: linear-gradient(to bottom, #d4af37, #b8860b);
+    color: #5C0000;
+    border: 2px solid #a37f00;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.triple-luck-game-card:hover {
+    transform: scale(1.05);
+}
+
+.tab-button-active {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+.treasure-hunter-card {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #a37f00, #d4af37);
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ffeb3b;
+}
+
+.treasure-hunter-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+.treasure-hunter-card.revealed {
+    background: #fff;
+    color: var(--primary-blue);
+    pointer-events: none;
+    transform: none;
+}
+
+.treasure-hunter-card.revealed.prize {
+    background: #4caf50;
+    color: white;
+}
+
+.catch-me-window {
+    width: 100px;
+    height: 100px;
+    background: #8B4513;
+    /* Brown for the window frame */
+    border: 5px solid #654321;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.catch-me-window-pane {
+    width: 100%;
+    height: 100%;
+    background-color: #A9A9A9;
+    /* Gray for the glass */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catch-me-symbol {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    transform: scale(0);
+}
+
+.catch-me-window.revealed .catch-me-symbol {
+    transform: scale(1);
+}
+
+.tab-button-active {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+/* Custom styles for enhanced modals */
+.modal-background-dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-header-luxury {
+    background: linear-gradient(145deg, #1f2937, #374151);
+    color: var(--gold-accent);
+    border-bottom: 2px solid var(--gold-accent);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.modal-card-luxury {
+    background: linear-gradient(145deg, #1f2937, #2d3748);
+    border: 1px solid #4a5568;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.modal-card-luxury:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+.modal-button-luxury {
+    background: linear-gradient(145deg, #d4af37, #b8860b);
+    color: #1f2937;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.modal-button-luxury:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.tab-button-luxury {
+    background: #2d3748;
+    color: white;
+    border: 1px solid #4a5568;
+    transition: all 0.2s ease;
+}
+
+.tab-button-luxury.active {
+    background: var(--gold-accent);
+    color: #1f2937;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.number-ball-luxury {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(145deg, #374151, #1f2937);
+    border: 1px solid #4a5568;
+    color: #e2e8f0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.number-ball-luxury:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #4a5568, #374151);
+}
+
+.number-ball-luxury.selected {
+    background: linear-gradient(145deg, #ffd700, #b8860b);
+    color: #1f2937;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    transform: scale(1.15);
+}
+
+.game-purchase-modal-main {
+    background: #1f2937;
+    padding: 2rem;
+    color: white;
+}
+
+.game-purchase-modal-sidebar {
+    background: #0d121c;
+}
+
+.sidebar-item-luxury {
+    background-color: #1f2937;
+    border-radius: 0.5rem;
+}
+
+.sidebar-item-luxury.active {
+    background-color: #2d3748;
+}
+
+.game-card-luxury img {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.info-box-luxury {
+    background: #2d3748;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #4a5568;
+}
+
+.info-box-luxury h4 {
+    color: var(--gold-accent);
+    border-bottom: 1px solid #4a5568;
+    padding-bottom: 0.5rem;
+}
+
+.info-box-luxury ul li span:last-child {
+    color: var(--gold-accent);
+}
