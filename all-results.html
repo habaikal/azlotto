@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="mn" translate="no" class="light" style="color-scheme: light;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Аз Лотто 545 - Бүх Үр Дүн</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="Аз Лотто 545 - Бүх сугалааны үр дүн.">
+
+    <!-- CSS and Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.14/iconfont/material-icons.min.css">
+    <link rel="icon" href="/icon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="antialiased bg-gray-50">
+    <div id="__next" data-reactroot="">
+        <!-- Header Section -->
+        <header class="header-bg text-white shadow-lg-custom py-4 px-6 md:px-10 sticky top-0 z-50">
+            <nav class="container mx-auto flex justify-between items-center">
+                <a class="flex items-center space-x-2" href="index.html">
+                    <img alt="AZLOTTO545 Logo" src="./images/logo.png" width="50" height="50"
+                        class="rounded-full border-2 border-gold-accent">
+                    <span class="text-2xl font-extrabold tracking-wide">AZLOTTO545</span>
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="index.html">Нүүр</a>
+                    <a class="text-gold-accent text-base font-medium" href="#">Үр Дүн</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
+                        href="index.html#how-to-play">Хэрхэн Тоглох Вэ?</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
+                        href="index.html#games">Тоглоомууд</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
+                        href="index.html#contact">Холбоо Барих</a>
+
+                    <!-- User Balance Display -->
+                    <div class="flex items-center space-x-2 bg-primary-dark-blue px-4 py-2 rounded-full border border-gold-accent cursor-pointer hover:bg-gray-800 transition"
+                        id="my-records-btn">
+                        <span class="text-gold-accent material-icons text-sm">account_balance_wallet</span>
+                        <span id="user-balance-display" class="text-white font-bold text-sm">0 ₮</span>
+                    </div>
+
+                    <a href="index.html#login"
+                        class="btn-primary py-2 px-6 rounded-full text-sm font-semibold shadow-md">
+                        Нэвтрэх / Бүртгүүлэх
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto py-10 px-4 min-h-[70vh]">
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-primary-blue mb-10">Бүх Сугалааны Үр Дүн</h1>
+
+            <div class="bg-white rounded-xl shadow-lg-custom overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-primary-blue text-white">
+                                <th class="p-4 text-center">Сугалаа №</th>
+                                <th class="p-4 text-center">Огноо</th>
+                                <th class="p-4 text-center">Азтай Дугаарууд</th>
+                                <th class="p-4 text-center">Нэмэлт</th>
+                                <th class="p-4 text-center">Шагнал (1-р байр)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <!-- Mock Data Row 1 -->
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="p-4 text-center font-bold">1188</td>
+                                <td class="p-4 text-center">2025-09-06</td>
+                                <td class="p-4">
+                                    <div class="flex justify-center gap-1 sm:gap-2">
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">12</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">19</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">22</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-center">
+                                    <span
+                                        class="ball-sm bg-gold-accent text-primary-blue rounded-full w-8 h-8 flex items-center justify-center font-bold mx-auto">9</span>
+                                </td>
+                                <td class="p-4 text-center font-bold text-gold-accent">25.8 тэрбум ₮</td>
+                            </tr>
+
+                            <!-- Mock Data Row 2 -->
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="p-4 text-center font-bold">1187</td>
+                                <td class="p-4 text-center">2025-08-30</td>
+                                <td class="p-4">
+                                    <div class="flex justify-center gap-1 sm:gap-2">
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">7</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">14</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">25</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">33</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">41</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-center">
+                                    <span
+                                        class="ball-sm bg-gold-accent text-primary-blue rounded-full w-8 h-8 flex items-center justify-center font-bold mx-auto">5</span>
+                                </td>
+                                <td class="p-4 text-center font-bold text-gold-accent">24.5 тэрбум ₮</td>
+                            </tr>
+
+                            <!-- Mock Data Row 3 -->
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="p-4 text-center font-bold">1186</td>
+                                <td class="p-4 text-center">2025-08-23</td>
+                                <td class="p-4">
+                                    <div class="flex justify-center gap-1 sm:gap-2">
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">11</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">29</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">30</span>
+                                        <span
+                                            class="ball-sm bg-primary-blue text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">44</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-center">
+                                    <span
+                                        class="ball-sm bg-gold-accent text-primary-blue rounded-full w-8 h-8 flex items-center justify-center font-bold mx-auto">12</span>
+                                </td>
+                                <td class="p-4 text-center font-bold text-gold-accent">23.2 тэрбум ₮</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="flex justify-center py-6">
+                    <nav class="flex gap-2">
+                        <a href="#" class="px-3 py-1 rounded border hover:bg-gray-100">Өмнөх</a>
+                        <a href="#" class="px-3 py-1 rounded border bg-primary-blue text-white">1</a>
+                        <a href="#" class="px-3 py-1 rounded border hover:bg-gray-100">2</a>
+                        <a href="#" class="px-3 py-1 rounded border hover:bg-gray-100">3</a>
+                        <a href="#" class="px-3 py-1 rounded border hover:bg-gray-100">Дараах</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="bg-primary-dark-blue text-white py-8 px-6 md:px-10 footer-bg">
+            <div class="container mx-auto text-center">
+                <p class="text-base mb-3">&copy; 2025 Аз Лотто 545. Бүх эрх хуулиар хамгаалагдсан.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+                    <a href="#" class="hover:text-gold-accent transition-colors">Нууцлалын Бодлого</a>
+                    <a href="#" class="hover:text-gold-accent transition-colors">Үйлчилгээний Нөхцөл</a>
+                    <a href="#" class="hover:text-gold-accent transition-colors">Түгээмэл Асуултууд</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/userBalance.js"></script>
+</body>
+
+</html>
