@@ -1,25 +1,17 @@
 // Module: userBalance.js
-// Manages simulated user balance and purchase history
+// Interacts with backend API for balance and purchase
 
 const UserBalanceManager = {
     balance: 0,
-    history: [],
+    apiUrl: 'http://localhost:3000/api/lotto',
 
     init: function () {
-        const storedBalance = localStorage.getItem('azlotto_balance');
-        const storedHistory = localStorage.getItem('azlotto_history');
+        // Balance is now fetched by AuthManager and passed to initFromBackend
+        this.updateUI();
+    },
 
-        if (storedBalance !== null) {
-            this.balance = parseInt(storedBalance, 10);
-        } else {
-            this.balance = 100000; // Initial simulated balance: 100,000 MNT
-            this.saveBalance();
-        }
-
-        if (storedHistory !== null) {
-            this.history = JSON.parse(storedHistory);
-        }
-
+    initFromBackend: function (serverBalance) {
+        this.balance = serverBalance;
         this.updateUI();
     },
 
@@ -27,38 +19,80 @@ const UserBalanceManager = {
         return this.balance;
     },
 
-    deduct: function (amount) {
+    // Simulated local deduction before API confirms (Optimistic UI) 
+    deductLocally: function (amount) {
         if (this.balance >= amount) {
             this.balance -= amount;
-            this.saveBalance();
             this.updateUI();
             return true;
         }
         return false;
     },
 
-    add: function (amount) {
-        this.balance += amount;
-        this.saveBalance();
-        this.updateUI();
+    // Real API Purchase
+    purchaseTickets: async function (gameType, selectedGames) {
+        if (!window.authManager || !window.authManager.token) {
+            alert('Эхлээд нэвтэрнэ үү! (Please login first)');
+            return false;
+        }
+
+        try {
+            const res = await fetch(`${this.apiUrl}/purchase`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${window.authManager.token}`
+                },
+                body: JSON.stringify({ gameType, selectedGames })
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                this.balance = data.newBalance;
+                this.updateUI();
+                return data.tickets; // Return processed tickets
+            } else {
+                alert(data.error || 'Purchase failed');
+                return false;
+            }
+        } catch (e) {
+            alert('Сүлжээний алдаа (Network Error)');
+            return false;
+        }
     },
 
-    addHistory: function (entry) {
-        // entry: { game: string, amount: number, details: string, timestamp: iso date, result: string }
-        const newEntry = {
-            ...entry,
-            timestamp: new Date().toISOString()
-        };
-        this.history.unshift(newEntry); // Add to beginning
-        this.saveHistory();
+    getHistory: async function () {
+        if (!window.authManager || !window.authManager.token) return [];
+        try {
+            const res = await fetch('http://localhost:3000/api/lotto/history', {
+                headers: { 'Authorization': `Bearer ${window.authManager.token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                return data.history;
+            }
+            return [];
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
     },
 
-    saveBalance: function () {
-        localStorage.setItem('azlotto_balance', this.balance.toString());
-    },
-
-    saveHistory: function () {
-        localStorage.setItem('azlotto_history', JSON.stringify(this.history));
+    getTickets: async function () {
+        if (!window.authManager || !window.authManager.token) return [];
+        try {
+            const res = await fetch('http://localhost:3000/api/lotto/tickets', {
+                headers: { 'Authorization': `Bearer ${window.authManager.token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                return data.tickets;
+            }
+            return [];
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
     },
 
     updateUI: function () {
@@ -66,15 +100,6 @@ const UserBalanceManager = {
         if (balanceEl) {
             balanceEl.textContent = `${this.balance.toLocaleString()} ₮`;
         }
-    },
-
-    reset: function () {
-        this.balance = 100000;
-        this.history = [];
-        this.saveBalance();
-        this.saveHistory();
-        this.updateUI();
-        alert('Balance and History have been reset.');
     }
 };
 
@@ -83,3 +108,4 @@ window.addEventListener('DOMContentLoaded', () => {
     window.userBalanceManager = UserBalanceManager;
     UserBalanceManager.init();
 });
+

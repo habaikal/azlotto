@@ -68,27 +68,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const noHistoryMsg = document.getElementById('no-history-msg');
     const myRecordsBalance = document.getElementById('my-records-balance');
 
-    function updateHistoryUI() {
+    const historyTab = document.getElementById('my-records-history-tab');
+    const ticketsTab = document.getElementById('my-records-tickets-tab');
+    const historyContent = document.getElementById('my-records-history-content');
+    const ticketsContent = document.getElementById('my-records-tickets-content');
+    const ticketsList = document.getElementById('my-tickets-list');
+    const noTicketsMsg = document.getElementById('no-tickets-msg');
+
+    if (historyTab && ticketsTab) {
+        historyTab.addEventListener('click', () => {
+            historyTab.classList.replace('text-gray-500', 'text-primary-dark-blue');
+            historyTab.classList.replace('border-transparent', 'border-primary-blue');
+            ticketsTab.classList.replace('text-primary-dark-blue', 'text-gray-500');
+            ticketsTab.classList.replace('border-primary-blue', 'border-transparent');
+            historyContent.classList.remove('hidden');
+            ticketsContent.classList.add('hidden');
+            updateHistoryUI();
+        });
+
+        ticketsTab.addEventListener('click', () => {
+            ticketsTab.classList.replace('text-gray-500', 'text-primary-dark-blue');
+            ticketsTab.classList.replace('border-transparent', 'border-primary-blue');
+            historyTab.classList.replace('text-primary-dark-blue', 'text-gray-500');
+            historyTab.classList.replace('border-primary-blue', 'border-transparent');
+            ticketsContent.classList.remove('hidden');
+            historyContent.classList.add('hidden');
+            updateTicketsUI();
+        });
+    }
+
+    async function updateTicketsUI() {
         if (!window.userBalanceManager) return;
 
-        const history = window.userBalanceManager.history;
-        const balance = window.userBalanceManager.balance;
+        if (ticketsList) {
+            ticketsList.innerHTML = '<tr><td colspan="4" class="text-center py-4">Уншиж байна...</td></tr>';
+            const tickets = await window.userBalanceManager.getTickets();
+            ticketsList.innerHTML = '';
 
+            if (tickets.length === 0) {
+                if (noTicketsMsg) noTicketsMsg.classList.remove('hidden');
+            } else {
+                if (noTicketsMsg) noTicketsMsg.classList.add('hidden');
+                tickets.forEach(item => {
+                    const date = new Date(item.created_at).toLocaleString();
+                    const row = document.createElement('tr');
+                    let displayNumbers = Array.isArray(item.numbers) ? item.numbers.join(', ') : item.numbers;
+                    row.innerHTML = `
+                        <td class="border-b py-2 text-sm text-gray-700">${date}</td>
+                        <td class="border-b py-2 text-sm text-gray-700 font-semibold">${item.game_type === 'lotto545' ? 'Lotto 5/45' : item.game_type}</td>
+                        <td class="border-b py-2 text-sm text-gray-600 font-mono tracking-widest">${displayNumbers || '-'}</td>
+                        <td class="border-b py-2 text-sm font-bold text-gray-500">
+                            Хүлээгдэж буй
+                        </td>
+                     `;
+                    ticketsList.appendChild(row);
+                });
+            }
+        }
+    }
+
+    async function updateHistoryUI() {
+        if (!window.userBalanceManager) return;
+
+        const balance = window.userBalanceManager.balance;
         if (myRecordsBalance) myRecordsBalance.textContent = `${balance.toLocaleString()} ₮`;
 
         if (historyList) {
+            historyList.innerHTML = '<tr><td colspan="4" class="text-center py-4">Уншиж байна...</td></tr>';
+            const history = await window.userBalanceManager.getHistory();
             historyList.innerHTML = '';
+
             if (history.length === 0) {
                 if (noHistoryMsg) noHistoryMsg.classList.remove('hidden');
             } else {
                 if (noHistoryMsg) noHistoryMsg.classList.add('hidden');
                 history.forEach(item => {
-                    const date = new Date(item.timestamp).toLocaleString();
+                    const date = new Date(item.created_at).toLocaleString();
                     const row = document.createElement('tr');
+                    const transactionTypeStr = item.type === 'deposit' ? 'Цэнэглэлт (Deposit)' : item.type === 'purchase' ? 'Худалдан Авалт (Purchase)' : item.type === 'prize' ? 'Хонжвор (Prize)' : item.type;
                     row.innerHTML = `
                         <td class="border-b py-2 text-sm text-gray-700">${date}</td>
-                        <td class="border-b py-2 text-sm text-gray-700 font-semibold">${item.game}</td>
-                        <td class="border-b py-2 text-sm text-gray-500 truncate max-w-xs" title="${item.details}">${item.details}</td>
+                        <td class="border-b py-2 text-sm text-gray-700 font-semibold">${transactionTypeStr}</td>
+                        <td class="border-b py-2 text-sm text-gray-500 truncate max-w-xs" title="${item.description}">${item.description}</td>
                         <td class="border-b py-2 text-sm text-right font-bold ${item.amount < 0 ? 'text-red-500' : 'text-green-500'}">
                             ${item.amount.toLocaleString()} ₮
                         </td>

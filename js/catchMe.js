@@ -121,25 +121,20 @@ function setupCatchMeModal() {
     }
 
     if (cmPurchaseBtn) {
-        cmPurchaseBtn.onclick = () => {
+        cmPurchaseBtn.onclick = async () => {
             const selectedQuantity = parseInt(document.querySelector('input[name="catch-me-buy-option"]:checked')?.value || '0');
             const totalPrice = selectedQuantity * catchMePrice;
 
             if (window.userBalanceManager) {
                 if (confirm(`${selectedQuantity} ширхэг Catch Me-ийг ${totalPrice.toLocaleString()}₮-ээр худалдаж авах уу?`)) {
-                    if (window.userBalanceManager.deduct(totalPrice)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Catch Me',
-                            amount: -totalPrice,
-                            details: `Multiplier: x${selectedQuantity}`,
-                            result: 'See Game'
-                        });
+                    let purchasedGames = [];
+                    for (let i = 0; i < selectedQuantity; i++) purchasedGames.push({ instance: i });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Catch Me', purchasedGames);
+                    if (tickets) {
                         alert('Таны худалдан авалт амжилттай боллоо! Тоглоомыг эхлүүлнэ үү.');
                         generateBoard();
                         if (cmPlayBtn) cmPlayBtn.textContent = 'Тоглох';
                         windows.forEach(w => w.style.pointerEvents = 'auto');
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

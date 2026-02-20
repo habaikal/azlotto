@@ -102,7 +102,7 @@ function setupLottoModal() {
     if (autoSelectBtn) {
         autoSelectBtn.addEventListener('click', () => {
             resetSelection();
-            const numbers = Array.from({length: 45}, (_, i) => i + 1);
+            const numbers = Array.from({ length: 45 }, (_, i) => i + 1);
             for (let i = 0; i < maxNumbers; i++) {
                 const randomIndex = Math.floor(Math.random() * numbers.length);
                 const selected = numbers.splice(randomIndex, 1)[0];
@@ -148,41 +148,33 @@ function setupLottoModal() {
     }
 
     if (buyLottoFinalBtn) {
-        buyLottoFinalBtn.addEventListener('click', () => {
-             // START: Integration with user balance system
-             if (purchasedGames.length === 0) {
+        buyLottoFinalBtn.addEventListener('click', async () => {
+            // START: Integration with user balance system
+            if (purchasedGames.length === 0) {
                 alert('Худалдаж авах тоглоом сонгоно уу.');
                 return;
             }
-            
+
             const totalCost = purchasedGames.length * lottoPrice;
-            
-            // Check if userBalanceManager exists (will be added to utils.js/user.js)
+
+            // Check if userBalanceManager exists
             if (window.userBalanceManager) {
-                if (window.userBalanceManager.deduct(totalCost)) {
-                    // Success
-                    window.userBalanceManager.addHistory({
-                        game: 'Lotto 545',
-                        amount: -totalCost, // Negative for cost
-                        details: purchasedGames.map(g => g.numbers.join(', ')).join(' | '),
-                        result: 'Pending' // Lottery result is pending
-                    });
-                     alert(`Таны худалдан авалт амжилттай боллоо! (${totalCost.toLocaleString()}₮)`);
-                     purchasedGames = []; // Reset cart
-                     updateDisplay();
-                     if (lottoModal) lottoModal.style.display = 'none';
-                } else {
-                    alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
+                const tickets = await window.userBalanceManager.purchaseTickets('Lotto 545', purchasedGames);
+                if (tickets) {
+                    alert(`Таны худалдан авалт амжилттай боллоо! (${totalCost.toLocaleString()}₮)`);
+                    purchasedGames = []; // Reset cart
+                    updateDisplay();
+                    if (lottoModal) lottoModal.style.display = 'none';
                 }
             } else {
                 // Fallback if balance manager not ready
-                 console.warn("UserBalanceManager not found.");
-                 alert(`Simulation: Purchased for ${totalCost}₮`);
-                 purchasedGames = [];
-                 updateDisplay();
-                 if (lottoModal) lottoModal.style.display = 'none';
+                console.warn("UserBalanceManager not found.");
+                alert(`Simulation: Purchased for ${totalCost}₮`);
+                purchasedGames = [];
+                updateDisplay();
+                if (lottoModal) lottoModal.style.display = 'none';
             }
-             // END: Integration
+            // END: Integration
         });
     }
 }

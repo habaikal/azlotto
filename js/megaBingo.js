@@ -126,7 +126,7 @@ function setupMegaBingoModal() {
     });
 
     if (bingoPurchaseBtn) {
-        bingoPurchaseBtn.onclick = () => {
+        bingoPurchaseBtn.onclick = async () => {
             if (selectedBingoNumbers.size !== 24) {
                 alert('Та 24 дугаар сонгоно уу.');
                 return;
@@ -136,17 +136,12 @@ function setupMegaBingoModal() {
 
             if (window.userBalanceManager) {
                 if (confirm(`${quantity} ширхэг Mega Bingo-ийг ${totalCost.toLocaleString()}₮-ээр худалдаж авах уу?`)) {
-                    if (window.userBalanceManager.deduct(totalCost)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Mega Bingo',
-                            amount: -totalCost,
-                            details: `Quantity: ${quantity}, Numbers: ${Array.from(selectedBingoNumbers).join(', ')}`,
-                            result: 'Pending'
-                        });
+                    let purchasedGames = [];
+                    for (let i = 0; i < quantity; i++) purchasedGames.push({ numbers: Array.from(selectedBingoNumbers) });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Mega Bingo', purchasedGames);
+                    if (tickets) {
                         alert('Таны худалдан авалт амжилттай боллоо! Амжилт хүсье.');
                         closeModal('mega-bingo-modal');
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

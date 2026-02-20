@@ -37,23 +37,18 @@ function setupTripleLuckModal() {
     });
 
     if (tlBuyBtn) {
-        tlBuyBtn.onclick = () => {
+        tlBuyBtn.onclick = async () => {
             const selectedQuantity = parseInt(document.querySelector('input[name="triple-luck-buy-option"]:checked')?.value || '0');
             const totalCost = selectedQuantity * tripleLuckPrice;
 
             if (window.userBalanceManager) {
                 if (confirm(`${selectedQuantity} ширхэг Triple Luck-ийг ${totalCost.toLocaleString()}₮-ээр худалдаж авах уу?`)) {
-                    if (window.userBalanceManager.deduct(totalCost)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Triple Luck',
-                            amount: -totalCost,
-                            details: `Quantity: ${selectedQuantity}`,
-                            result: 'Instant'
-                        });
+                    let purchasedGames = [];
+                    for (let i = 0; i < selectedQuantity; i++) purchasedGames.push({ instance: i });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Triple Luck', purchasedGames);
+                    if (tickets) {
                         alert('Таны худалдан авалт амжилттай боллоо! Амжилт хүсье.');
                         closeModal('triple-luck-modal');
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

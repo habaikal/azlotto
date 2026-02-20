@@ -119,24 +119,19 @@ function setupDoubleJackMidasModal() {
     }
 
     if (djmPurchaseBtn) {
-        djmPurchaseBtn.onclick = () => {
+        djmPurchaseBtn.onclick = async () => {
             const selectedQuantity = parseInt(document.querySelector('input[name="double-jack-midas-buy-option"]:checked')?.value || '0');
             const totalPrice = selectedQuantity * djmPrice;
 
             if (window.userBalanceManager) {
                 if (confirm(`${selectedQuantity} ширхэг Double Jack Midas-ийг ${totalPrice.toLocaleString()}₮-ээр худалдаж авах уу?`)) {
-                    if (window.userBalanceManager.deduct(totalPrice)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Double Jack Midas',
-                            amount: -totalPrice,
-                            details: `Quantity: ${selectedQuantity}`,
-                            result: 'See Game'
-                        });
+                    let purchasedGames = [];
+                    for (let i = 0; i < selectedQuantity; i++) purchasedGames.push({ instance: i });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Double Jack Midas', purchasedGames);
+                    if (tickets) {
                         alert('Таны худалдан авалт амжилттай боллоо! Тоглоомыг эхлүүлнэ үү.');
                         generateBoard();
                         if (djmRevealBtn) djmRevealBtn.style.display = 'block';
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

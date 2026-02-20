@@ -43,7 +43,7 @@
                         <span id="user-balance-display" class="text-white font-bold text-sm">0 ₮</span>
                     </div>
 
-                    <a href="index.html#login"
+                    <a href="index.html#login" id="login-btn"
                         class="btn-primary py-2 px-6 rounded-full text-sm font-semibold shadow-md">
                         Нэвтрэх / Бүртгүүлэх
                     </a>
@@ -134,12 +134,14 @@
         </footer>
     </div>
 
-    <!-- Placeholders for other modals if needed (hidden) -->
     <div id="lotto-modal" style="display:none;"></div>
 
     <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/userBalance.js"></script>
     <script src="js/lotto545.js"></script>
+    <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Calculate today's jackpot or info if needed

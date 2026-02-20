@@ -113,24 +113,19 @@ function setupTreasureHunterModal() {
     }
 
     if (thPurchaseBtn) {
-        thPurchaseBtn.onclick = () => {
+        thPurchaseBtn.onclick = async () => {
             const selectedQuantity = parseInt(document.querySelector('input[name="treasure-hunter-buy-option"]:checked')?.value || '0');
             const totalPrice = selectedQuantity * treasurePrice;
 
             if (window.userBalanceManager) {
                 if (confirm(`${selectedQuantity} ширхэг Treasure Hunter-ийг ${totalPrice.toLocaleString()}₮-ээр худалдаж авах уу?`)) {
-                    if (window.userBalanceManager.deduct(totalPrice)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Treasure Hunter',
-                            amount: -totalPrice,
-                            details: `Quantity: ${selectedQuantity}`,
-                            result: 'See Game'
-                        });
+                    let purchasedGames = [];
+                    for (let i = 0; i < selectedQuantity; i++) purchasedGames.push({ instance: i });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Treasure Hunter', purchasedGames);
+                    if (tickets) {
                         alert('Таны худалдан авалт амжилттай боллоо! Тоглоомыг эхлүүлнэ үү.');
                         generateBoard();
                         if (thRevealBtn) thRevealBtn.style.display = 'block';
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

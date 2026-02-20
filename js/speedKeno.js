@@ -80,7 +80,7 @@ function setupSpeedKenoModal() {
     }
 
     if (speedKenoPurchaseBtn) {
-        speedKenoPurchaseBtn.onclick = () => {
+        speedKenoPurchaseBtn.onclick = async () => {
             if (speedKenoSelectedNumbers.size < 2 || speedKenoSelectedNumbers.size > 10) {
                 alert('Та 2-оос 10 хүртэлх дугаар сонгоно уу.');
                 return;
@@ -92,20 +92,13 @@ function setupSpeedKenoModal() {
 
             if (window.userBalanceManager) {
                 if (confirm(`Та дараах тоглоомыг худалдаж авах уу?\n\nДугаар: ${sortedNumbers.join(', ')}\nҮнэ: ${totalCost.toLocaleString()}₮`)) {
-                    if (window.userBalanceManager.deduct(totalCost)) {
-                        window.userBalanceManager.addHistory({
-                            game: 'Speed Keno',
-                            amount: -totalCost,
-                            details: `Numbers: ${sortedNumbers.join(', ')}`,
-                            result: 'Pending'
-                        });
+                    const tickets = await window.userBalanceManager.purchaseTickets('Speed Keno', [{ numbers: sortedNumbers }]);
+                    if (tickets) {
                         alert(`Таны худалдан авалт амжилттай боллоо!`);
                         speedKenoSelectedNumbers.clear();
                         document.querySelectorAll('#speed-keno-balls .number-ball-luxury').forEach(ball => ball.classList.remove('selected'));
                         if (speedKenoSelectionCountEl) speedKenoSelectionCountEl.textContent = 0;
                         closeModal('speed-keno-modal');
-                    } else {
-                        alert('Үлдэгдэл хүрэлцэхгүй байна. Цэнэглэнэ үү.');
                     }
                 }
             } else {

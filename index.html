@@ -1204,9 +1204,103 @@
             </div>
         </div>
     </div>
+    <!-- My Records Modal (Injected) -->
+    <div id="my-records-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-center">
+        <div
+            class="bg-gray-100 rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto relative shadow-2xl border border-gold-accent">
+            <div
+                class="sticky top-0 bg-primary-dark-blue text-white p-4 flex justify-between items-center rounded-t-lg border-b border-gold-accent z-10">
+                <h2 class="text-2xl font-bold flex items-center">
+                    <span class="material-icons mr-2 text-gold-accent">account_balance_wallet</span>Таны Данс
+                </h2>
+                <div class="flex space-x-4 items-center">
+                    <div class="text-lg">Үлдэгдэл: <span id="my-records-balance" class="text-gold-accent font-bold">0
+                            ₮</span></div>
+                    <button id="reset-balance-btn"
+                        class="text-sm bg-red-600 hover:bg-red-700 px-3 py-1 rounded transition hidden">Алдааг
+                        засах</button>
+                    <button class="text-white hover:text-red-500 transition" onclick="closeModal('my-records-modal')">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+            </div>
 
+            <div class="p-6">
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-300 mb-6">
+                    <button id="my-records-history-tab"
+                        class="px-6 py-2 text-primary-dark-blue font-bold border-b-2 border-primary-blue hover:bg-gray-200 transition">Түүх
+                        (History)</button>
+                    <button id="my-records-tickets-tab"
+                        class="px-6 py-2 text-gray-500 font-bold border-b-2 border-transparent hover:text-primary-dark-blue hover:bg-gray-200 transition">Тасалбарууд
+                        (Tickets)</button>
+                </div>
+
+                <!-- History Section -->
+                <div id="my-records-history-content" class="block">
+                    <h3 class="text-xl font-bold text-primary-dark-blue mb-4 flex items-center">
+                        <span class="material-icons mr-2 text-primary-blue">history</span>Гүйлгээний Түүх
+                    </h3>
+                    <div class="bg-white rounded-lg shadow-inner overflow-x-auto border border-gray-200">
+                        <table class="min-w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-700">
+                                    <th class="py-3 px-4 border-b">Огноо</th>
+                                    <th class="py-3 px-4 border-b">Тоглоом / Төрөл</th>
+                                    <th class="py-3 px-4 border-b">Дэлгэрэнгүй</th>
+                                    <th class="py-3 px-4 border-b text-right">Дүн</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purchase-history-list">
+                                <tr>
+                                    <td colspan="4" class="py-6 text-center text-gray-500">
+                                        <div class="flex flex-col flex-center items-center">
+                                            <span class="material-icons text-4xl mb-2 text-gray-300">receipt_long</span>
+                                            <p id="no-history-msg">Худалдан авалтын түүх хоосон байна.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tickets Section -->
+                <div id="my-records-tickets-content" class="hidden">
+                    <h3 class="text-xl font-bold text-primary-dark-blue mb-4 flex items-center">
+                        <span class="material-icons mr-2 text-primary-blue">local_activity</span>Миний Тасалбарууд
+                    </h3>
+                    <div class="bg-white rounded-lg shadow-inner overflow-x-auto border border-gray-200">
+                        <table class="min-w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-700">
+                                    <th class="py-3 px-4 border-b">Огноо</th>
+                                    <th class="py-3 px-4 border-b">Тоглоом</th>
+                                    <th class="py-3 px-4 border-b">Тоонууд/Сонголт</th>
+                                    <th class="py-3 px-4 border-b">Төлөв</th>
+                                </tr>
+                            </thead>
+                            <tbody id="my-tickets-list">
+                                <tr>
+                                    <td colspan="4" class="py-6 text-center text-gray-500">
+                                        <div class="flex flex-col flex-center items-center">
+                                            <span
+                                                class="material-icons text-4xl mb-2 text-gray-300">confirmation_number</span>
+                                            <p id="no-tickets-msg">Тасалбар байхгүй байна.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Game Logic Scripts -->
     <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/userBalance.js"></script>
     <script src="js/lotto545.js"></script>
     <script src="js/powerBall.js"></script>
