@@ -83,6 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLang = getLanguage();
     syncCookie(currentLang);
 
+    // Dynamically inject the google_translate_element container to ensure it always exists
+    if (!document.getElementById('google_translate_element')) {
+        const gtContainer = document.createElement('div');
+        gtContainer.id = 'google_translate_element';
+        document.body.appendChild(gtContainer);
+    }
+
     // Add Google Translate script
     const script = document.createElement('script');
     script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
