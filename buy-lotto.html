@@ -48,7 +48,32 @@
                         Нэвтрэх / Бүртгүүлэх
                     </a>
                 </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <span class="material-icons text-3xl text-primary-blue">menu</span>
+                    </button>
+                </div>
             </nav>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
+                <a href="index.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Нүүр</a>
+                <a href="index.html#results" class="block py-2 px-4 text-sm hover:bg-gray-100">Үр Дүн</a>
+                <a href="index.html#how-to-play" class="block py-2 px-4 text-sm hover:bg-gray-100">Хэрхэн Тоглох Вэ?</a>
+                <a href="index.html#games" class="block py-2 px-4 text-sm hover:bg-gray-100">Тоглоомууд</a>
+                <a class="block px-4 py-2 hover:bg-secondary-blue rounded-md text-base" href="index.html#contact">Холбоо
+                    Барих</a>
+                <button id="mobile-login-btn"
+                    class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
+                    Нэвтрэх / Бүртгүүлэх
+                </button>
+                <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
+                <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
+                    class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
+                    Сугалаа Худалдаж Авах
+                </a>
+            </div>
         </header>
 
         <!-- Main Content -->
