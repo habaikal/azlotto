@@ -31,24 +31,22 @@ function getLanguage() {
     return localStorage.getItem('az_lang') || 'mn';
 }
 
-function setAppLanguage(lang) {
-    localStorage.setItem('az_lang', lang);
-
-    // Update our custom dropdowns
-    document.querySelectorAll('.lang-switcher').forEach(select => {
-        select.value = lang;
-    });
-
-    // Trigger Google Translate dropdown
-    triggerGoogleTranslate(lang);
+function syncCookie(lang) {
+    if (lang === 'mn') {
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    } else {
+        document.cookie = `googtrans=/mn/${lang}; path=/; domain=${location.hostname}`;
+        document.cookie = `googtrans=/mn/${lang}; path=/`;
+    }
 }
 
-function triggerGoogleTranslate(lang) {
-    const gtSelect = document.querySelector('.goog-te-combo');
-    if (gtSelect) {
-        gtSelect.value = lang;
-        gtSelect.dispatchEvent(new Event('change'));
-    }
+function setAppLanguage(lang) {
+    localStorage.setItem('az_lang', lang);
+    syncCookie(lang);
+
+    // Reload page to let Google Translate natively parse the googtrans cookie on boot
+    window.location.reload();
 }
 
 // Global translate function for JS alerts (since GT doesn't translate JS alerts)
@@ -78,24 +76,19 @@ window.googleTranslateElementInit = function () {
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
     }, 'google_translate_element');
-
-    // After a short delay, apply the saved language
-    setTimeout(() => {
-        const savedLang = getLanguage();
-        if (savedLang === 'en') {
-            triggerGoogleTranslate('en');
-        }
-    }, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Ensure cookie matches before script load
+    const currentLang = getLanguage();
+    syncCookie(currentLang);
+
     // Add Google Translate script
     const script = document.createElement('script');
     script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.head.appendChild(script);
 
     // Setup switchers
-    const currentLang = getLanguage();
     document.querySelectorAll('.lang-switcher').forEach(select => {
         select.value = currentLang;
         select.addEventListener('change', (e) => {
