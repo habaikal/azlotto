@@ -195,6 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeGlobalEvents() {
     // Open Purchase Modal Function - Global
     window.openPurchaseModal = function (gameName) {
+        // Enforce login for Casual Games and Lotto modals
+        if (!localStorage.getItem('az_jwt')) {
+            alert('Эхлээд нэвтэрнэ үү! (Please login first)');
+            return;
+        }
+
         let modalId = '';
         switch (gameName) {
             case 'Lotto 5/45':

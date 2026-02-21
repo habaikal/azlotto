@@ -611,4 +611,67 @@ body {
     color: var(--gold-accent);
 }
 
-/* End of file */
+/* Mobile UI Size Reductions */
+@media (max-width: 768px) {
+
+    /* General modals */
+    .modal-content {
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    /* Lotto 5/45 */
+    .number-grid {
+        gap: 0.25rem !important;
+    }
+
+    .number-ball {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Powerball & Speed Keno */
+    .number-ball-luxury {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Bingo */
+    #mega-bingo-board div,
+    #bingo-board div {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Treasure Hunter */
+    .treasure-hunter-card {
+        width: 65px !important;
+        height: 65px !important;
+        font-size: 1.5rem !important;
+    }
+
+    /* Catch Me */
+    .catch-me-window {
+        padding-top: 80% !important;
+        /* adjust aspect ratio or size */
+    }
+
+    /* Triple Luck */
+    .triple-luck-game-card {
+        padding: 0.5rem !important;
+    }
+
+    .triple-luck-symbol {
+        font-size: 2rem !important;
+    }
+
+    /* History & General Tables */
+    td,
+    th {
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
+    }
+}

@@ -57,22 +57,26 @@
             </nav>
 
             <!-- Mobile Menu -->
-            <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
-                <a href="index.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Нүүр</a>
-                <a href="index.html#results" class="block py-2 px-4 text-sm hover:bg-gray-100">Үр Дүн</a>
-                <a href="index.html#how-to-play" class="block py-2 px-4 text-sm hover:bg-gray-100">Хэрхэн Тоглох Вэ?</a>
-                <a href="index.html#games" class="block py-2 px-4 text-sm hover:bg-gray-100">Тоглоомууд</a>
-                <a class="block px-4 py-2 hover:bg-secondary-blue rounded-md text-base" href="index.html#contact">Холбоо
+            <div
+                class="mobile-menu hidden md:hidden bg-primary-dark-blue border-t border-gray-700 mt-4 rounded-lg pb-4">
+                <a href="index.html" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Нүүр</a>
+                <a href="index.html#results" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Үр Дүн</a>
+                <a href="index.html#how-to-play" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Хэрхэн
+                    Тоглох Вэ?</a>
+                <a href="index.html#games" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Тоглоомууд</a>
+                <a class="block px-4 py-3 hover:bg-gray-800 text-sm text-center" href="index.html#contact">Холбоо
                     Барих</a>
-                <button id="mobile-login-btn"
-                    class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
-                    Нэвтрэх / Бүртгүүлэх
-                </button>
-                <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
-                <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
-                    class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
-                    Сугалаа Худалдаж Авах
-                </a>
+                <div class="px-4">
+                    <button id="mobile-login-btn"
+                        class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
+                        Нэвтрэх / Бүртгүүлэх
+                    </button>
+                    <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
+                    <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
+                        class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
+                        Сугалаа Худалдаж Авах
+                    </a>
+                </div>
             </div>
         </header>
 
@@ -132,8 +136,12 @@
                                 <span class="text-base font-semibold text-primary-blue">Нийт төлбөр:</span>
                                 <span id="total-price" class="text-xl font-extrabold text-gold-accent">0 ₮</span>
                             </div>
+                            <a href="#" id="lotto-recharge-btn"
+                                class="btn-secondary py-2 px-6 rounded-full text-base font-bold mt-2 text-center text-green-600 border-green-600 hover:bg-green-50">
+                                Данс Цэнэглэх
+                            </a>
                             <button id="buy-lotto-final-btn"
-                                class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md">
+                                class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md mt-2">
                                 Худалдаж Авах
                             </button>
                             <button id="clear-all-btn"
