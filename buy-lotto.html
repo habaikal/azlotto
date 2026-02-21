@@ -12,30 +12,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-icons@1.13.14/iconfont/material-icons.min.css">
     <link rel="icon" href="/icon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/i18n.js"></script>
+    <link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 
-<body class="antialiased bg-gray-50">
+<body class="antialiased font-sans flex flex-col min-h-screen">
     <div id="__next" data-reactroot="">
-        <!-- Header Section -->
-        <header class="header-bg text-white shadow-lg-custom py-4 px-6 md:px-10 sticky top-0 z-50">
+        <div id="google_translate_element" style="display:none;"></div>
+        <!-- Header Section (Simplified for inner pages) -->
+        <header class="header-bg text-white py-4 px-6 md:px-10 sticky top-0 z-50 shadow-md">
             <nav class="container mx-auto flex justify-between items-center">
                 <a class="flex items-center space-x-2" href="index.html">
-                    <img alt="AZLOTTO545 Logo" src="./images/logo.png" width="50" height="50"
+                    <img alt="AZLOTTO545 Logo" src="./images/logo.png" width="40" height="40"
                         class="rounded-full border-2 border-gold-accent">
-                    <span class="text-2xl font-extrabold tracking-wide">AZLOTTO545</span>
+                    <span class="text-xl font-extrabold tracking-wide">AZLOTTO545</span>
                 </a>
-                <div class="hidden md:flex space-x-6 items-center">
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="index.html">Нүүр</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
-                        href="index.html#results">Үр Дүн</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
-                        href="index.html#how-to-play">Хэрхэн Тоглох Вэ?</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
-                        href="index.html#games">Тоглоомууд</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
-                        href="index.html#contact">Холбоо Барих</a>
 
+                <div class="hidden md:flex items-center space-x-6">
                     <!-- User Balance Display -->
                     <div class="flex items-center space-x-2 bg-primary-dark-blue px-4 py-2 rounded-full border border-gold-accent cursor-pointer hover:bg-gray-800 transition"
                         id="my-records-btn">
@@ -47,6 +40,14 @@
                         class="btn-primary py-2 px-6 rounded-full text-sm font-semibold shadow-md">
                         Нэвтрэх / Бүртгүүлэх
                     </a>
+
+                    <select
+                        class="lang-switcher bg-primary-dark-blue text-white border border-gray-600 rounded-md py-1 px-2 text-sm focus:outline-none">
+                        <option value="mn">MN</option>
+                        <option value="en">EN</option>
+                    </select>
+                    <a href="index.html"
+                        class="hover:text-gold-accent transition-colors text-base font-medium">Буцах</a>
                 </div>
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
@@ -59,112 +60,104 @@
             <!-- Mobile Menu -->
             <div
                 class="mobile-menu hidden md:hidden bg-primary-dark-blue border-t border-gray-700 mt-4 rounded-lg pb-4">
-                <a href="index.html" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Нүүр</a>
-                <a href="index.html#results" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Үр Дүн</a>
-                <a href="index.html#how-to-play" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Хэрхэн
-                    Тоглох Вэ?</a>
-                <a href="index.html#games" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Тоглоомууд</a>
-                <a class="block px-4 py-3 hover:bg-gray-800 text-sm text-center" href="index.html#contact">Холбоо
-                    Барих</a>
-                <div class="px-4">
-                    <button id="mobile-login-btn"
-                        class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
-                        Нэвтрэх / Бүртгүүлэх
-                    </button>
-                    <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
-                    <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
-                        class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
-                        Сугалаа Худалдаж Авах
-                    </a>
-                </div>
+                <button id="mobile-login-btn"
+                    class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
+                    Нэвтрэх / Бүртгүүлэх
+                </button>
+                <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
+                <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
+                    class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
+                    Сугалаа Худалдаж Авах
+                </a>
             </div>
-        </header>
+    </div>
+    </header>
 
-        <!-- Main Content -->
-        <main class="container mx-auto py-10 px-4 min-h-[70vh] flex justify-center">
+    <!-- Main Content -->
+    <main class="container mx-auto py-10 px-4 min-h-[70vh] flex justify-center">
 
-            <div class="w-full max-w-5xl">
-                <h1 class="text-3xl md:text-4xl font-bold text-center text-primary-blue mb-10">Сугалаа Худалдаж Авах
-                    (Lotto 5/45)</h1>
+        <div class="w-full max-w-5xl">
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-primary-blue mb-10">Сугалаа Худалдаж Авах
+                (Lotto 5/45)</h1>
 
-                <!-- Purchase UI (adapted from previous modal) -->
-                <div class="bg-white rounded-xl shadow-lg-custom p-6 md:p-10">
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <!-- Number Selection Area -->
-                        <div class="flex flex-col gap-4 p-4 border-2 border-gray-300 rounded-xl flex-1">
-                            <h3 class="text-xl font-bold text-primary-blue text-center">Дугаар Сонгох</h3>
-                            <div class="flex justify-center items-center">
-                                <div class="number-grid">
-                                    <!-- Number balls 1~45 will be generated here by lotto545.js -->
-                                </div>
+            <!-- Purchase UI (adapted from previous modal) -->
+            <div class="bg-white rounded-xl shadow-lg-custom p-6 md:p-10">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Number Selection Area -->
+                    <div class="flex flex-col gap-4 p-4 border-2 border-gray-300 rounded-xl flex-1">
+                        <h3 class="text-xl font-bold text-primary-blue text-center">Дугаар Сонгох</h3>
+                        <div class="flex justify-center items-center">
+                            <div class="number-grid">
+                                <!-- Number balls 1~45 will be generated here by lotto545.js -->
                             </div>
-                            <div class="flex justify-center items-center gap-4 mt-4">
-                                <button id="auto-select-btn"
-                                    class="btn-secondary py-2 px-4 rounded-full text-xs font-semibold">Автоматаар
-                                    Сонгох</button>
-                                <button id="reset-selection-btn"
-                                    class="btn-secondary py-2 px-4 rounded-full text-xs font-semibold">Сонголтыг
-                                    Цэвэрлэх</button>
-                            </div>
-                            <div class="flex justify-center items-center mt-4 gap-4">
-                                <label for="game-count" class="text-base font-semibold text-primary-blue">Тоглоомын
-                                    Тоо:</label>
-                                <select id="game-count"
-                                    class="py-2 px-4 rounded-full border-2 border-primary-blue focus:outline-none focus:border-accent-blue text-base">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <button id="confirm-selection-btn"
-                                class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md mt-4">
-                                Баталгаажуулах
-                            </button>
                         </div>
-
-                        <!-- Selected Numbers Confirmation and Purchase Area -->
-                        <div class="flex flex-col gap-4 p-4 border-2 border-gray-300 rounded-xl w-full md:w-1/3">
-                            <h3 class="text-xl font-bold text-primary-blue text-center">Сонгосон Дугаар</h3>
-                            <div id="selected-games-display"
-                                class="game-display-box flex flex-col gap-2 min-h-[200px] overflow-y-auto">
-                                <!-- Selected games will be dynamically added here -->
-                                <div class="text-center text-gray-500 py-8">Сонгосон дугаар байхгүй байна.</div>
-                            </div>
-                            <div class="flex justify-between items-center mt-4">
-                                <span class="text-base font-semibold text-primary-blue">Нийт төлбөр:</span>
-                                <span id="total-price" class="text-xl font-extrabold text-gold-accent">0 ₮</span>
-                            </div>
-                            <a href="#" id="lotto-recharge-btn"
-                                class="btn-secondary py-2 px-6 rounded-full text-base font-bold mt-2 text-center text-green-600 border-green-600 hover:bg-green-50">
-                                Данс Цэнэглэх
-                            </a>
-                            <button id="buy-lotto-final-btn"
-                                class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md mt-2">
-                                Худалдаж Авах
-                            </button>
-                            <button id="clear-all-btn"
-                                class="btn-secondary py-2 px-6 rounded-full text-base font-bold mt-2">
-                                Бүгдийг Цэвэрлэх
-                            </button>
+                        <div class="flex justify-center items-center gap-4 mt-4">
+                            <button id="auto-select-btn"
+                                class="btn-secondary py-2 px-4 rounded-full text-xs font-semibold">Автоматаар
+                                Сонгох</button>
+                            <button id="reset-selection-btn"
+                                class="btn-secondary py-2 px-4 rounded-full text-xs font-semibold">Сонголтыг
+                                Цэвэрлэх</button>
                         </div>
+                        <div class="flex justify-center items-center mt-4 gap-4">
+                            <label for="game-count" class="text-base font-semibold text-primary-blue">Тоглоомын
+                                Тоо:</label>
+                            <select id="game-count"
+                                class="py-2 px-4 rounded-full border-2 border-primary-blue focus:outline-none focus:border-accent-blue text-base">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <button id="confirm-selection-btn"
+                            class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md mt-4">
+                            Баталгаажуулах
+                        </button>
+                    </div>
+
+                    <!-- Selected Numbers Confirmation and Purchase Area -->
+                    <div class="flex flex-col gap-4 p-4 border-2 border-gray-300 rounded-xl w-full md:w-1/3">
+                        <h3 class="text-xl font-bold text-primary-blue text-center">Сонгосон Дугаар</h3>
+                        <div id="selected-games-display"
+                            class="game-display-box flex flex-col gap-2 min-h-[200px] overflow-y-auto">
+                            <!-- Selected games will be dynamically added here -->
+                            <div class="text-center text-gray-500 py-8">Сонгосон дугаар байхгүй байна.</div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-base font-semibold text-primary-blue">Нийт төлбөр:</span>
+                            <span id="total-price" class="text-xl font-extrabold text-gold-accent">0 ₮</span>
+                        </div>
+                        <a href="#" id="lotto-recharge-btn"
+                            class="btn-secondary py-2 px-6 rounded-full text-base font-bold mt-2 text-center text-green-600 border-green-600 hover:bg-green-50">
+                            Данс Цэнэглэх
+                        </a>
+                        <button id="buy-lotto-final-btn"
+                            class="btn-primary py-2 px-6 rounded-full text-base font-bold shadow-md mt-2">
+                            Худалдаж Авах
+                        </button>
+                        <button id="clear-all-btn"
+                            class="btn-secondary py-2 px-6 rounded-full text-base font-bold mt-2">
+                            Бүгдийг Цэвэрлэх
+                        </button>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <!-- Footer Section -->
-        <footer class="bg-primary-dark-blue text-white py-8 px-6 md:px-10 footer-bg mt-10">
-            <div class="container mx-auto text-center">
-                <p class="text-base mb-3">&copy; 2025 Аз Лотто 545. Бүх эрх хуулиар хамгаалагдсан.</p>
-                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
-                    <a href="#" class="hover:text-gold-accent transition-colors">Нууцлалын Бодлого</a>
-                    <a href="#" class="hover:text-gold-accent transition-colors">Үйлчилгээний Нөхцөл</a>
-                    <a href="#" class="hover:text-gold-accent transition-colors">Түгээмэл Асуултууд</a>
-                </div>
+    <!-- Footer Section -->
+    <footer class="bg-primary-dark-blue text-white py-8 px-6 md:px-10 footer-bg mt-10">
+        <div class="container mx-auto text-center">
+            <p class="text-base mb-3">&copy; 2025 Аз Лотто 545. Бүх эрх хуулиар хамгаалагдсан.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+                <a href="#" class="hover:text-gold-accent transition-colors">Нууцлалын Бодлого</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">Үйлчилгээний Нөхцөл</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">Түгээмэл Асуултууд</a>
             </div>
-        </footer>
+        </div>
+    </footer>
     </div>
 
     <div id="lotto-modal" style="display:none;"></div>

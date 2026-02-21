@@ -32,6 +32,7 @@
     <meta name="theme-color" content="#0A2C59">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/i18n.js"></script>
     <!-- styles moved to css/styles.css -->
     <link rel="stylesheet" href="css/styles.css?v=2">
     <style>
@@ -89,13 +90,17 @@
                     <span class="text-2xl font-extrabold tracking-wide">AZLOTTO545</span>
                 </a>
                 <div class="hidden md:flex space-x-6 items-center">
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#home">Нүүр</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#results">Үр Дүн</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#how-to-play">Хэрхэн
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#home"
+                        data-i18n="nav_home">Нүүр</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#results"
+                        data-i18n="nav_results">Үр Дүн</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#how-to-play"
+                        data-i18n="nav_how_to_play">Хэрхэн
                         Тоглох Вэ?</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium"
-                        href="#games">Тоглоомууд</a>
-                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#contact">Холбоо
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#games"
+                        data-i18n="nav_games">Тоглоомууд</a>
+                    <a class="hover:text-gold-accent transition-colors text-base font-medium" href="#contact"
+                        data-i18n="nav_contact">Холбоо
                         Барих</a>
 
                     <!-- User Balance Display -->
@@ -105,7 +110,14 @@
                         <span id="user-balance-display" class="text-white font-bold text-sm">0 ₮</span>
                     </div>
 
-                    <button id="login-btn" class="btn-primary py-2 px-6 rounded-full text-sm font-semibold shadow-md">
+                    <select
+                        class="lang-switcher bg-primary-dark-blue text-white border border-gray-600 rounded-md py-1 px-2 text-sm focus:outline-none">
+                        <option value="mn">MN</option>
+                        <option value="en">EN</option>
+                    </select>
+
+                    <button id="login-btn" class="btn-primary py-2 px-6 rounded-full text-sm font-semibold shadow-md"
+                        data-i18n="nav_login_register">
                         Нэвтрэх / Бүртгүүлэх
                     </button>
                 </div>
@@ -121,46 +133,62 @@
             <!-- Mobile Menu -->
             <div
                 class="mobile-menu hidden md:hidden bg-primary-dark-blue border-t border-gray-700 mt-4 rounded-lg pb-4">
-                <a href="#" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Нүүр</a>
-                <a href="#results" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Үр Дүн</a>
-                <a href="#how-to-play" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Хэрхэн Тоглох
+                <a href="#" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center" data-i18n="nav_home">Нүүр</a>
+                <a href="#results" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center"
+                    data-i18n="nav_results">Үр Дүн</a>
+                <a href="#how-to-play" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center"
+                    data-i18n="nav_how_to_play">Хэрхэн Тоглох
                     Вэ?</a>
-                <a href="#games" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center">Тоглоомууд</a>
-                <a class="block px-4 py-3 hover:bg-gray-800 text-sm text-center" href="#contact">Холбоо Барих</a>
+                <a href="#games" class="block py-3 px-4 text-sm hover:bg-gray-800 text-center"
+                    data-i18n="nav_games">Тоглоомууд</a>
+                <a class="block px-4 py-3 hover:bg-gray-800 text-sm text-center" href="#contact"
+                    data-i18n="nav_contact">Холбоо Барих</a>
+
+                <div class="px-4 mt-2 flex justify-center">
+                    <select
+                        class="lang-switcher w-1/2 bg-gray-800 text-white border border-gray-600 rounded-md py-1 px-2 text-sm focus:outline-none">
+                        <option value="mn">MN (Mongolian)</option>
+                        <option value="en">EN (English)</option>
+                    </select>
+                </div>
+
                 <div class="px-4">
                     <button id="mobile-login-btn"
-                        class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4">
+                        class="btn-primary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4"
+                        data-i18n="nav_login_register">
                         Нэвтрэх / Бүртгүүлэх
                     </button>
                     <!-- "Сугалаа Худалдаж Авах" 버튼 추가 -->
                     <a href="buy-lotto.html" id="mobile-buy-lotto-btn"
-                        class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center">
+                        class="btn-secondary w-full py-2 px-6 rounded-full text-sm font-semibold shadow-md mt-4 block text-center"
+                        data-i18n="nav_buy_lotto">
                         Сугалаа Худалдаж Авах
                     </a>
                 </div>
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="h-[75vh] flex flex-col items-center justify-center p-6 bg-gradient-hero text-white">
             <section id="home" class="text-center">
                 <h1 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight animate-fade-in-up">
-                    <span class="block">Аз Лотто 545-д Тавтай Морил!</span>
-                    <span class="block text-gold-accent mt-2 text-lg md:text-2xl">Азаа Сориорой!</span>
+                    <span class="block" data-i18n="hero_title_1">Аз Лотто 545-д Тавтай Морил!</span>
+                    <span class="block text-gold-accent mt-2 text-lg md:text-2xl" data-i18n="hero_title_2">Азаа
+                        Сориорой!</span>
                 </h1>
-                <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 animate-fade-in">
+                <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 animate-fade-in" data-i18n="hero_desc">
                     Монголын хамгийн шилдэг онлайн сугалааны платформд нэгдэж, том ялалт байгуулах боломжийг бүү
                     алдаарай.
                     Бид танд хамгийн сүүлийн үеийн тоглоомууд болон аюулгүй, хурдан үйлчилгээг санал болгож байна.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="buy-lotto.html" id="play-now-btn"
-                        class="btn-primary py-3 px-8 rounded-full text-xl font-bold shadow-lg-custom hover:scale-105 transition-all text-center">
-                        Одоо Тоглох
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up"
+                    style="animation-delay: 0.4s;">
+                    <a href="buy-lotto.html" class="btn-primary font-bold py-3 px-8 rounded-full shadow-lg text-lg"
+                        data-i18n="hero_buy_btn">
+                        Сугалаа Худалдаж Авах
                     </a>
-                    <a href="#how-to-play"
-                        class="btn-secondary py-3 px-8 rounded-full text-xl font-bold shadow-lg-custom hover:scale-105 transition-all text-center">
-                        Дэлгэрэнгүй
+                    <a href="#results" class="btn-secondary font-bold py-3 px-8 rounded-full shadow-lg text-lg"
+                        data-i18n="hero_results_btn">
+                        Сүүлийн Үр Дүн Харах
                     </a>
                 </div>
             </section>

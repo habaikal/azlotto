@@ -491,6 +491,19 @@ body {
     color: var(--text-light);
 }
 
+/* --- Google Translate Overrides --- */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+#google_translate_element {
+    display: none !important;
+}
+
 /* Custom styles for enhanced modals */
 .modal-background-dark {
     background-color: #1a1a1a;
