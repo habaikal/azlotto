@@ -492,12 +492,19 @@ body {
 }
 
 /* --- Google Translate Overrides --- */
-.goog-te-banner-frame.skiptranslate {
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt {
     display: none !important;
 }
 
 body {
     top: 0px !important;
+    position: static !important;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none !important;
 }
 
 #google_translate_element {
